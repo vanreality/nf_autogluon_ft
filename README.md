@@ -8,8 +8,8 @@ The workflow is designed to be scalable, reproducible, and efficient, leveraging
 To use the scripts, ensure the following dependencies are installed:
 
 - Nextflow
-- Singularity (Optional, if running in containerized environments)
-- AutoGluon (Optional, if not running in containerized environments)
+- Singularity (Optional – for containerized environments)
+- AutoGluon (Optional – if not using Singularity)
 
 Install Nextflow
 ```bash
@@ -27,6 +27,7 @@ pip install pandas numpy click scikit-learn autogluon
 ```
 
 ## Pipeline Structure
+```
 .                            # Project root directory
 ├── config                   # Configuration files directory
 │   └── meta.tsv             # Metadata file containing task parameters (e.g., paths for train/validation/test data)
@@ -55,9 +56,10 @@ pip install pandas numpy click scikit-learn autogluon
 │
 └── scripts                  # Custom scripts directory
     └── at.py                # Python script for handling autogluon training tasks
+```
 
 ## Usage
-1. Prepare Data Files
+### 1. Prepare Data Files
 Ensure your raw methylation data is formatted according to the expected **MethylQUEEN format**. The MQ format should contain **six columns** with the following headers:
 ```
 chr    start    end    seq    tag    label
@@ -71,10 +73,10 @@ chr    start    end    seq    tag    label
 
 Place the prepared data files in the appropriate directory for processing.
 
-2. Prepare Metadata File
+### 2. Prepare Metadata File
 Edit the `config/meta.tsv` file to include the datasets and parameters required for each run.
 
-3. Execute the Pipeline
+### 3. Execute the Pipeline
 ```bash
 nextflow run main.nf -profile singularity -bg
 ```
@@ -88,4 +90,5 @@ nextflow clean -f
 ## Notes
 - Ensure that Nextflow and Singularity are properly installed and configured before running the pipeline.
 - Review the logs in the output directory for troubleshooting and performance evaluation.
+
 Let me know if you'd like any further adjustments!
