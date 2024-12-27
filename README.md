@@ -1,4 +1,4 @@
-# Autogluon read split
+# Autogluon read classifier training pipeline
 
 This Nextflow pipeline automates the process of training machine learning models using `AutoGluon`, which make use of DNA sequences and methylation information for read classification tasks. The pipeline processes multiple datasets in parallel, performs model training, and outputs the results along with log files for each training run.
 
@@ -90,5 +90,3 @@ nextflow clean -f
 ## Notes
 - Ensure that Nextflow and Singularity are properly installed and configured before running the pipeline.
 - Review the logs in the output directory for troubleshooting and performance evaluation.
-
-Let me know if you'd like any further adjustments!
