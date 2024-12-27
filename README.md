@@ -60,14 +60,14 @@ pip install pandas numpy click scikit-learn autogluon
 
 ## Usage
 ### 1. Prepare Data Files
-Ensure your raw methylation data is formatted according to the expected **MethylQUEEN format**. The MQ format should contain **six columns** with the following headers:
+Ensure your raw methylation data is formatted according to the expected format. The format should contain **six columns** with the following headers:
 ```
 chr    start    end    seq    tag    label
 ```
 - **chr** – Chromosome  
 - **start** – Start position  
 - **end** – End position  
-- **seq** – DNA sequence with base 'M'
+- **seq** – DNA sequence with or without base 'M'
 - **tag** – Additional metadata or identifier  
 - **label** – Class or label for the sequence  
 
