@@ -15,10 +15,11 @@ process autogluon_train {
     )
 
     output:
-    path "${name}"  // Capture the output directory
+    path("${name}")                // Model output in work directory
 
     script:
     """
+    mkdir -p ${name}
     python3 ${workflow.projectDir}/scripts/at.py \\
       --train ${train} \\
       --validation ${validation} \\
@@ -26,7 +27,7 @@ process autogluon_train {
       --target ${target} \\
       --background ${background} \\
       --usem ${usem} \\
-      --output ${name}
+      --output ${name} &> ${name}/train.log
     """
 }
 
@@ -46,10 +47,4 @@ workflow {
         .set { meta_rows_ch }
 
     autogluon_train(meta_rows_ch)
-        .collect()
-        .set { results }
-
-    // Store process outputs to params.outdir
-    results
-        .map { dir -> dir.copyTo("${params.outdir}/${dir.name}") }
 }

@@ -1,0 +1,43 @@
+Bootstrap: docker
+From: debian:bookworm-slim  # Lightweight base image
+
+%post
+    # Install Python and necessary dependencies
+    apt-get update && apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-venv \
+        wget \
+        curl \
+        bzip2 \
+        ca-certificates \
+        libglib2.0-0 \
+        libxext6 \
+        libsm6 \
+        libxrender1 \
+        git && \
+        apt-get clean && rm -rf /var/lib/apt/lists/*
+
+    # Create virtual environment
+    python3 -m venv /opt/autogluon-env
+
+    # Activate environment and install packages
+    . /opt/autogluon-env/bin/activate
+    pip install --upgrade pip
+    pip install pandas numpy click scikit-learn autogluon
+    deactivate
+
+    # Clean up
+    rm -rf /root/.cache/pip
+
+%environment
+    # Set up the virtual environment for container runtime
+    export PATH=/opt/autogluon-env/bin:$PATH
+    source /opt/autogluon-env/bin/activate
+
+%runscript
+    echo "Launching AutoGluon environment with Python venv..."
+    exec "$@"
+
+%test
+    /opt/autogluon-env/bin/python -c "import autogluon; print('AutoGluon installed successfully')"
