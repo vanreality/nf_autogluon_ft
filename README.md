@@ -7,9 +7,9 @@ The workflow is designed to be scalable, reproducible, and efficient, leveraging
 ## Requirements
 To use the scripts, ensure the following dependencies are installed:
 
-- Nextflow
-- Singularity (Optional – for containerized environments)
-- AutoGluon (Optional – if not using Singularity)
+- [Nextflow](https://www.nextflow.io/docs/latest/index.html)
+- [Singularity](https://docs.sylabs.io/guides/4.2/user-guide/) (Optional – for containerized environments)
+- [AutoGluon](https://github.com/autogluon/autogluon) (Optional – if not using Singularity)
 
 Install Nextflow
 ```bash
