@@ -29,7 +29,7 @@ pip install pandas numpy click scikit-learn autogluon
 ## Pipeline Structure
 ```
 .                            # Project root directory
-├── config                   # Configuration files directory
+├── assets                   # Assets files directory
 │   └── meta.tsv             # Metadata file containing task parameters (e.g., paths for train/validation/test data)
 │
 ├── data                     # Data directory
