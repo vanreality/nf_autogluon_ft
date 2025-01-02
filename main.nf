@@ -44,7 +44,7 @@ workflow {
                   row.target,
                   row.background)
         }
-        .set { meta_rows_ch }
+        .set { ch_meta_rows }
 
-    autogluon_train(meta_rows_ch)
+    autogluon_train(ch_meta_rows)
 }
